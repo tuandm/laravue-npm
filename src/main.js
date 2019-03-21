@@ -1,11 +1,8 @@
-import Vue from 'vue';
-import JsonEditor from './components/JsonEditor';
+import Vue from 'vue'
+import App from './App.vue'
 
-const Components = {
-  JsonEditor,
-};
-Object.keys(Components).forEach(name => {
-  Vue.component(name, Components[name]);
-});
+Vue.config.productionTip = false
 
-export default Components;
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
