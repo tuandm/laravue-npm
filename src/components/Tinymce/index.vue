@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import editorImage from './components/EditorImage';
+import editorImage from './components/EditorImage.vue';
 import plugins from './plugins';
 import toolbar from './toolbar';
 

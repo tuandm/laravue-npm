@@ -1,5 +1,5 @@
 <template>
-  <a href="https://github.com/tuandm/laravue" target="_blank" class="github-corner" aria-label="View source on Github">
+  <a :href="url" target="_blank" class="github-corner" aria-label="View source on Github">
     <svg
       width="80"
       height="80"
@@ -19,6 +19,15 @@
     </svg>
   </a>
 </template>
+
+<script>
+export default {
+  props: {
+    url: String,
+    required: true,
+  },
+};
+</script>
 
 <style scoped>
 .github-corner:hover .octo-arm {

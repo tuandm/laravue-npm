@@ -37,6 +37,46 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        // only include svg that doesn't have font in the path or file name by using negative lookahead
+        test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
+        loaders: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: path => {
+                if (!/node_modules|bower_components/.test(path)) {
+                  return (
+                    'images/[name].[ext]?[hash]'
+                  );
+                }
+
+                return (
+                  'images/vendor/' +
+                  path
+                    .replace(/\\/g, '/')
+                    .replace(
+                      /((.*(node_modules|bower_components))|images|image|img|assets)\//g,
+                      ''
+                    ) +
+                  '?[hash]'
+                );
+              },
+              publicPath: '/'
+            }
+          },
+          {
+            loader: 'img-loader',
+            options: {
+              enabled: true,
+              gifsicle: {},
+              mozjpeg: {},
+              optipng: {},
+              svgo: {}              
+            }
+          }
+        ]
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
